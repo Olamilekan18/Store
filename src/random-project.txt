@@ -1,0 +1,9 @@
+- a web app with react maybe food or marketplace
+- login/sgnup with react-router
+- using a ui library like material ui or chakra or shadcn or tailwind
+- if possible, try to practice some backend with it
+- use ai
+- ability to like and add as favorite
+- if its marketplace, add a feature of cart and check out
+- ui as nice as possible 
+- responsiveness for mobile 
