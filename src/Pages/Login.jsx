@@ -2,12 +2,39 @@
 import './../App.css'
 import 'tailwindcss/tailwind.css';
 import './../output.css'
-import { Link,  } from 'react-router-dom';
+import { Link, useNavigate,  } from 'react-router-dom';
+import { useState } from 'react';
+import { signInWithEmailAndPassword } from 'firebase/auth';
+import { auth } from '../../firebase';
 
 
 
 function Login() {
  
+  const [error, setError] = useState('')
+  {error&& <p>Error while trying to login...</p>}
+ const navigate = useNavigate()
+ const [email, setEmail] = useState('');
+ const [password, setPassword] = useState ('')
+
+ const handleLogin = async(e)=>{
+  e.preventDefault();
+  try{
+    const userCredential = await signInWithEmailAndPassword(auth, email, password);
+      const user = userCredential.user; // Get the user object
+      console.log("Login successful:", user);
+    navigate('/home')
+  }
+  catch(error){
+    const errorCode = error.code; // Get the error code
+      // const error = error.message; // Get the error message
+      console.error("Error during login:", errorCode, error);
+      
+      // Set error message for display
+      setError(error);
+  }
+  
+ }
     return (
       <>
        
@@ -36,6 +63,8 @@ function Login() {
                     type="email"
                     required
                     autoComplete="email"
+                    value={email}
+                    onChange={(e) =>setEmail(e.target.value)}
                     className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                   />
                 </div>
@@ -53,6 +82,8 @@ function Login() {
                     id="password"
                     name="password"
                     type="password"
+                    value={password}
+                    onChange={(e)=>setPassword(e.target.value)}
                     required
                     autoComplete="current-password"
                     className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
@@ -64,6 +95,7 @@ function Login() {
   
               <div>
                 <button
+                onClick={handleLogin}
                   type="submit"
                   className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                 >
