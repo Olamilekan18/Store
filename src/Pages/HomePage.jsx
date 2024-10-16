@@ -29,7 +29,7 @@ function Home() {
       {user ? (
         <div>
  <h1>Welcome, {user.displayName ? user.displayName : 'User'}</h1>          
-          <button onClick={handleLogout} className='bg-sky-500 hover:bg-red-700'>Logout</button>
+          <button onClick={handleLogout} className='bg-sky-500 hover:bg-red-700 text-white'>Logout</button>
         </div>
       ) : (
       <SignUp/>
