@@ -8,18 +8,22 @@ import { useNavigate } from 'react-router-dom';
 import { auth } from '../../firebase';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { useState } from 'react';
+import { updateProfile } from 'firebase/auth';
 
 function SignUp() {
     const  [error, setError] = useState('')
+    const [name, setName] = useState('')
     const navigate = useNavigate()
     const handleSignup = async(e)  =>{
         e.preventDefault();
         try{
-            await createUserWithEmailAndPassword(auth,email,password);
+           const userCredential = await createUserWithEmailAndPassword(auth,email,password);
+            const user = userCredential.user;
+            await updateProfile(user, {displayName:name})
            navigate('/home')
         }
         catch(error){
-            if (error.code === 'auth/email-already-in-use'){
+            if (error.message === 'Firebase: Error (auth/email-already-in-use).'){
                 setError('This email has been already registered')
             }
             setError(error.message)
@@ -28,7 +32,7 @@ function SignUp() {
 
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-    const [name, setName] = useState('')
+   
     return (
       <>
        {error && <p>{error}</p>}

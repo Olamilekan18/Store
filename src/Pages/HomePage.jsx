@@ -1,33 +1,20 @@
-// import { useState } from "react";
-// import { useNavigate } from "react-router-dom"
-
-// function Home() {
-// const navigate = useNavigate();
-// const [email,setEmail] = useState('')
-// const [password, setPassword] = useState('')
-//   return (
-//     <>
-//     <p className="text-center bg-blue-500 text-3xl">Hello World</p>
-//     </>
-//   )
-// }
-
-// export default Home
-
-
 import React, { useEffect, useState } from 'react';
 import { auth } from '../../firebase';
 import { onAuthStateChanged, signOut } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
 import SignUp from './Signup';
 
-function App() {
+function Home() {
   const [user, setUser] = useState(null);
-  const navigate = useNavigate
+  const navigate = useNavigate()
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-      setUser(currentUser);
+        if (currentUser)
+            {      setUser(currentUser);
+          }else{
+            setUser(null)
+          }
     });
     return () => unsubscribe(); // Cleanup subscription on unmount
   }, []);
@@ -41,9 +28,8 @@ function App() {
     <div>
       {user ? (
         <div>
-          <h1>Welcome, {user.name}</h1>
-          
-          <button onClick={handleLogout}>Logout</button>
+ <h1>Welcome, {user.displayName ? user.displayName : 'User'}</h1>          
+          <button onClick={handleLogout} className='bg-sky-500 hover:bg-red-700'>Logout</button>
         </div>
       ) : (
       <SignUp/>
@@ -52,5 +38,5 @@ function App() {
   );
 }
 
-export default App;
+export default Home;
 
