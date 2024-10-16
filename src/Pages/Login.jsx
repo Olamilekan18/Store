@@ -2,23 +2,12 @@
 import './../App.css'
 import 'tailwindcss/tailwind.css';
 import './../output.css'
-import { Link, Router } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom';
-/*
-  This example requires some changes to your config:
-  
-  ```
-  // tailwind.config.js
-  module.exports = {
-    // ...
-    plugins: [
-      // ...
-      require('@tailwindcss/forms'),
-    ],
-  }
-  ```
-*/
+import { Link,  } from 'react-router-dom';
+
+
+
 function Login() {
+ 
     return (
       <>
        
@@ -89,7 +78,7 @@ function Login() {
             </form>
             <p className="mt-10 text-center text-sm text-gray-500">
               New Here?{' '}
-              <Link to = '/SignUp' className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">SignUp</Link>
+              <Link to = '/' className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">SignUp</Link>
             </p>
           </div>
         </div>
