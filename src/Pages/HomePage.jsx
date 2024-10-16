@@ -18,9 +18,12 @@
 import React, { useEffect, useState } from 'react';
 import { auth } from '../../firebase';
 import { onAuthStateChanged, signOut } from 'firebase/auth';
+import { useNavigate } from 'react-router-dom';
+import SignUp from './Signup';
 
 function App() {
   const [user, setUser] = useState(null);
+  const navigate = useNavigate
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
@@ -31,19 +34,19 @@ function App() {
 
   const handleLogout = async () => {
     await signOut(auth);
+    navigate('/')
   };
 
   return (
     <div>
       {user ? (
         <div>
-          <h1>Welcome, {user.email}</h1>
+          <h1>Welcome, {user.name}</h1>
+          
           <button onClick={handleLogout}>Logout</button>
         </div>
       ) : (
-        <div>
-          <h1>Please log in or sign up</h1>
-        </div>
+      <SignUp/>
       )}
     </div>
   );

@@ -10,6 +10,7 @@ import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { useState } from 'react';
 
 function SignUp() {
+    const  [error, setError] = useState('')
     const navigate = useNavigate()
     const handleSignup = async(e)  =>{
         e.preventDefault();
@@ -18,13 +19,16 @@ function SignUp() {
            navigate('/home')
         }
         catch(error){
+            if (error.code === 'auth/email-already-in-use'){
+                setError('This email has been already registered')
+            }
             setError(error.message)
         }
     }
 
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-    const  [error, setError] = useState('')
+    const [name, setName] = useState('')
     return (
       <>
        {error && <p>{error}</p>}
@@ -87,6 +91,7 @@ function SignUp() {
                     type="text"
                     required
                     autoComplete="current-password"
+                    onChange={(e) => setName(e.target.value)}
                     className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                   />
                 </div>
