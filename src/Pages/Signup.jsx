@@ -4,6 +4,7 @@ import 'tailwindcss/tailwind.css';
 import './../output.css'
 import { Link, Router } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
+
 /*
   This example requires some changes to your config:
   
@@ -18,10 +19,17 @@ import { useNavigate } from 'react-router-dom';
   }
   ```
 */
-function Login() {
+function SignUp() {
     return (
       <>
-       
+        {/*
+          This example requires updating your template:
+  
+          ```
+          <html class="h-full bg-white">
+          <body class="h-full">
+          ```
+        */}
         <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
           <div className="sm:mx-auto sm:w-full sm:max-w-sm">
             <img
@@ -69,8 +77,19 @@ function Login() {
                     className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                   />
                 </div>
-               
-                
+                <label htmlFor="password" className="block text-sm font-medium leading-6 text-gray-900">
+                    Name
+                  </label>
+                <div className="mt-2">
+                  <input
+                    id="name"
+                    name="name"
+                    type="text"
+                    required
+                    autoComplete="current-password"
+                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  />
+                </div>
               </div>
   
               <div>
@@ -87,9 +106,10 @@ function Login() {
                     </a>
                   </div>
             </form>
+  
             <p className="mt-10 text-center text-sm text-gray-500">
-              New Here?{' '}
-              <Link to = '/SignUp' className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">SignUp</Link>
+              Have an account?{' '}
+              <Link to = '/Login' className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">Login</Link>
             </p>
           </div>
         </div>
@@ -98,4 +118,4 @@ function Login() {
   }
   
 
-export default Login
+export default SignUp
