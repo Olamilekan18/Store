@@ -6,24 +6,34 @@ import { Link, useNavigate,  } from 'react-router-dom';
 import { useState } from 'react';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../../firebase';
+import { ClipLoader } from 'react-spinners';
 
 
 
 function Login() {
- 
+ const [loading, setLoading] = useState(false)
+
+
   const [error, setError] = useState('')
   {error&& <p>Error while trying to login...</p>}
  const navigate = useNavigate()
  const [email, setEmail] = useState('');
  const [password, setPassword] = useState ('')
 
+ const [resetEmailSent, setResetEmailSent] = useState(false); // State for password reset email confirmation
+ const [forgotPasswordEmail, setForgotPasswordEmail] = useState(''); // Email for password reset
+
  const handleLogin = async(e)=>{
   e.preventDefault();
   try{
+    setLoading(true)
     const userCredential = await signInWithEmailAndPassword(auth, email, password);
       const user = userCredential.user; // Get the user object
       console.log("Login successful:", user);
-    navigate('/home')
+     // Delay navigation for at least 2 seconds
+     setTimeout(() => {
+      navigate('/home');
+    }, 200); //delay
   }
   catch(error){
     const errorCode = error.code; // Get the error code
@@ -32,12 +42,23 @@ function Login() {
       
       // Set error message for display
       setError(error);
+      setLoading(false)
   }
-  
+  if (errorCode === 'auth/invalid-email') {
+    setErrorMessage('The email address is not valid.');
+  } else if (errorCode === 'auth/user-not-found') {
+    setErrorMessage('No user found with this email.');
+  } else if (errorCode === 'auth/wrong-password') {
+    setErrorMessage('Incorrect password. Please try again.');
+  } else {
+    setErrorMessage(errorMessage);
+  }
  }
     return (
       <>
-       
+       {loading? (<div className='flex items-center justify-center min-h-screen'>
+        <ClipLoader color={'#4A90E2'} size={150}/>
+       </div>):(
         <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
           <div className="sm:mx-auto sm:w-full sm:max-w-sm">
             <img
@@ -114,7 +135,9 @@ function Login() {
             </p>
           </div>
         </div>
+       )}
       </>
+       
     )
   }
   
