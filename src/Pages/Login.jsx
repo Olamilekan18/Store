@@ -4,7 +4,7 @@ import 'tailwindcss/tailwind.css';
 import './../output.css'
 import { Link, useNavigate,  } from 'react-router-dom';
 import { useState } from 'react';
-import { signInWithEmailAndPassword } from 'firebase/auth';
+import { sendPasswordResetEmail, signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../../firebase';
 import { ClipLoader } from 'react-spinners';
 
@@ -54,6 +54,27 @@ function Login() {
     setErrorMessage(errorMessage);
   }
  }
+// Handle Forgot Password reset request
+
+const handleForgotPassword = async (e) =>{
+  e.preventDefault();
+ 
+
+  try {
+    setLoading(true);
+    await sendPasswordResetEmail(auth, email);
+    setLoading(false)
+    setResetEmailSent(true);
+    setError(false)
+  } catch (error) {
+    console.error("Error sending password reset email", error)
+    setError(error.message)
+    setLoading(false)
+  }
+}
+
+
+
     return (
       <>
        {loading? (<div className='flex items-center justify-center min-h-screen'>
@@ -124,15 +145,21 @@ function Login() {
                 </button>
               </div>
               <div className="text-sm">
-                    <a href="#" className="font-semibold text-indigo-600 hover:text-indigo-500">
+                    <button 
+                    onClick={handleForgotPassword}
+                    className="font-semibold cursor-pointer text-indigo-600 hover:text-indigo-500">
                       Forgot password?
-                    </a>
+                    </button>
                   </div>
             </form>
             <p className="mt-10 text-center text-sm text-gray-500">
               New Here?{' '}
               <Link to = '/' className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">SignUp</Link>
             </p>
+            {resetEmailSent &&<p className='text-center text-sm text-green-600 mt-4'>Password reset Email sent successfully</p>}
+            {error &&<p className='text-center text-sm text-red-600 mt-4'>An error occured...</p>}
+
+
           </div>
         </div>
        )}
