@@ -6,7 +6,7 @@ import { Link, useNavigate,  } from 'react-router-dom';
 import { useState } from 'react';
 import { sendPasswordResetEmail, signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../../firebase';
-import { ClipLoader } from 'react-spinners';
+import { ClipLoader, RingLoader } from 'react-spinners';
 
 
 
@@ -78,7 +78,7 @@ const handleForgotPassword = async (e) =>{
     return (
       <>
        {loading? (<div className='flex items-center justify-center min-h-screen'>
-        <ClipLoader color={'#4A90E2'} size={150}/>
+        <RingLoader color={'#4A90E2'} size={150}/>
        </div>):(
         <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
           <div className="sm:mx-auto sm:w-full sm:max-w-sm">
