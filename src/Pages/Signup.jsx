@@ -4,29 +4,34 @@ import 'tailwindcss/tailwind.css';
 import './../output.css'
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
-
+import { RingLoader } from 'react-spinners';
 import { auth } from '../../firebase';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { useState } from 'react';
 import { updateProfile } from 'firebase/auth';
 
 function SignUp() {
+  const [loading, setLoading] = useState(false)
     const  [error, setError] = useState('')
     const [name, setName] = useState('')
     const navigate = useNavigate()
     const handleSignup = async(e)  =>{
         e.preventDefault();
         try{
+          setLoading(true)
            const userCredential = await createUserWithEmailAndPassword(auth,email,password);
             const user = userCredential.user;
             await updateProfile(user, {displayName:name})
-           navigate('/home')
-        }
+          setTimeout(() => {
+             navigate('/home')
+  
+          }, 100);        }
         catch(error){
             if (error.message === 'Firebase: Error (auth/email-already-in-use).'){
                 setError('This email has been already registered')
             }
             setError(error.message)
+            setLoading(false)
         }
     }
 
@@ -35,7 +40,11 @@ function SignUp() {
    
     return (
       <>
-       {error && <p>{error}</p>}
+     {loading? (<div className='flex items-center justify-center min-h-screen'>
+        <RingLoader color={'#4A90E2'} size={150}/>
+       </div>):(
+      //  {error && <p>{error}</p>}
+       
         <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
           <div className="sm:mx-auto sm:w-full sm:max-w-sm">
             <img
@@ -123,6 +132,7 @@ function SignUp() {
             </p>
           </div>
         </div>
+       )}
       </>
     )
   }

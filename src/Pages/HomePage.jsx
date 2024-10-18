@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import SignUp from './Signup';
 
 function Home() {
+
   const [user, setUser] = useState(null);
   const navigate = useNavigate()
 
@@ -29,7 +30,7 @@ function Home() {
       {user ? (
         <div>
  <h1>Welcome, {user.displayName ? user.displayName : 'User'}</h1>          
-          <button onClick={handleLogout} className='bg-sky-500 hover:bg-red-700 text-white'>Logout</button>
+          <button onClick={handleLogout} className='bg-sky-500 hover:bg-red-700 text-white bottom-20'>Logout</button>
         </div>
       ) : (
       <SignUp/>
