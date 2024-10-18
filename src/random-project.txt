@@ -7,3 +7,10 @@
 - if its marketplace, add a feature of cart and check out
 - ui as nice as possible 
 - responsiveness for mobile 
+
+
+// To do 14 october 2024 3:51pm
+// find api
+//check for other login pages
+// work with firebase and forget password functionality
+// so help me God amen

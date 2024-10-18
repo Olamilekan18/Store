@@ -21,7 +21,6 @@ function Login() {
  const [password, setPassword] = useState ('')
 
  const [resetEmailSent, setResetEmailSent] = useState(false); // State for password reset email confirmation
- const [forgotPasswordEmail, setForgotPasswordEmail] = useState(''); // Email for password reset
 
  const handleLogin = async(e)=>{
   e.preventDefault();

@@ -53,7 +53,7 @@ function SignUp() {
               className="mx-auto h-10 w-auto"
             />
             <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
-              Sign in to your account
+              Sign Up to an account
             </h2>
           </div>
   
@@ -120,9 +120,9 @@ function SignUp() {
                 </button>
               </div>
               <div className="text-sm">
-                    <a href="#" className="font-semibold text-indigo-600 hover:text-indigo-500">
+                    {/* <a href="#" className="font-semibold text-indigo-600 hover:text-indigo-500">
                       Forgot password?
-                    </a>
+                    </a> */}
                   </div>
             </form>
   
