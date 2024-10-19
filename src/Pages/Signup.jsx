@@ -120,9 +120,7 @@ function SignUp() {
                 </button>
               </div>
               <div className="text-sm">
-                    {/* <a href="#" className="font-semibold text-indigo-600 hover:text-indigo-500">
-                      Forgot password?
-                    </a> */}
+                    
                   </div>
             </form>
   
