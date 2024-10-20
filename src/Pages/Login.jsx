@@ -29,7 +29,6 @@ function Login() {
     const userCredential = await signInWithEmailAndPassword(auth, email, password);
       const user = userCredential.user; // Get the user object
       console.log("Login successful:", user);
-     // Delay navigation for at least 2 seconds
      setTimeout(() => {
       navigate('/home');
     }, 200); //delay
