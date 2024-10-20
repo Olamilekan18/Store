@@ -3,7 +3,7 @@ import { auth } from '../../firebase';
 import { onAuthStateChanged, signOut } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
 import SignUp from './Signup';
-import { Disclosure, DisclosureButton, DisclosurePanel, Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react'
+import { Button, Disclosure, DisclosureButton, DisclosurePanel, Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react'
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
 
 import { RingLoader } from 'react-spinners';
@@ -43,8 +43,9 @@ function Home() {
     navigate('/')
   };
 
-
-
+function handleCart() {
+  console.log("Added to cart")
+}
   // Fetching products
 
  
@@ -192,10 +193,11 @@ function Home() {
                     {/*   Products */}
 
                     <div>
-                      <h1>{product.title}</h1>
+                      <p>{product.title}</p>
                       <p>{product.description}</p>
                       <p>Price: ${product.price}</p>
                       <img src={product.image} alt={product.title} srcset="" />
+                    <Button onClick={handleCart}>Add to cart</Button>
                     </div>
                     <button onClick={handleLogout} className='bg-sky-500 hover:bg-red-700 text-white bottom-20 flex-col'>
                         Logout
