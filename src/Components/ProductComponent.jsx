@@ -25,6 +25,10 @@ useEffect(() => {
 }
  , [])
 
+ function handleCart() {
+    console.log("Added to Cart")
+ }
+
 return(
     <div>
       {loading?  (<div className='flex items-center justify-center min-h-screen'> 
@@ -40,7 +44,7 @@ return(
             <p>{product.description.substring(0, 100)}...</p>
             <p className="font-bold">Price: ${product.price}</p>
             <HeartIcon className= "w-6 h-6 text-gray-500 hover:fill-red-500  cursor-pointer  bottom-2 right-2" />
-            <Button className="rounded bg-sky-600 py-2 px-4 text-sm text-white data-[hover]:bg-sky-500 data-[hover]:data-[active]:bg-sky-700">Add to Cart</Button>
+            <Button onClick={handleCart} className="rounded bg-sky-600 py-2 px-4 text-sm text-white data-[hover]:bg-sky-500 data-[hover]:data-[active]:bg-sky-700">Add to Cart</Button>
 
           </div>
         ))}
