@@ -7,6 +7,7 @@ import { Button, Disclosure, DisclosureButton, DisclosurePanel, Menu, MenuButton
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
 
 import { RingLoader } from 'react-spinners';
+import ProductComponent from '../Components/ProductComponent';
 
 const navigation = [
   { name: 'Dashboard', href: '#', current: true },
@@ -56,7 +57,7 @@ function handleCart() {
         try {
         setLoading(true)
           
-          const response = await fetch('https://fakestoreapi.com/products/1')
+          const response = await fetch('https://fakestoreapi.com/products/3')
           const data = await response.json();
           setProduct(data)
         } catch (error) {
@@ -192,13 +193,7 @@ function handleCart() {
 
                     {/*   Products */}
 
-                    <div>
-                      <p>{product.title}</p>
-                      <p>{product.description}</p>
-                      <p>Price: ${product.price}</p>
-                      <img src={product.image} alt={product.title} srcset="" />
-                    <Button onClick={handleCart}>Add to cart</Button>
-                    </div>
+                   <ProductComponent/>
                     <button onClick={handleLogout} className='bg-sky-500 hover:bg-red-700 text-white bottom-20 flex-col'>
                         Logout
                     </button>
