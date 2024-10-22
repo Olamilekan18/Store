@@ -9,19 +9,29 @@ import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import { RingLoader } from 'react-spinners';
 import ProductComponent from '../Components/ProductComponent';
 
+const navigate = useNavigate()
+
 const navigation = [
-  { name: 'Dashboard', href: '#', current: true },
-  { name: 'Profile', href: '#', current: false },
-  { name: 'Projects', href: '#', current: false },
-  { name: 'Calendar', href: '#', current: false },
+  { name: 'Home', href: '#', current: true, onClick: () => navigate('/home')},
+  { name: 'Favorites', href: '#', current: false, onclick: handleFavorites},
+  { name: 'Cart', href: '#', current: false, onClick: handleCart  },
+  { name: 'Account', href: '#', current: false,  },
 ]
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
+function handleFavorites() {
+    console.log("Added to Favorites")
+}
 
+function handleCart() {
+    console.log("Added to cart")
+  }
 
 function Home() {
+
+   
 
   const[loading, setLoading] = useState(false)
 
@@ -77,7 +87,7 @@ function handleCart() {
 
 
   return (
-    <div>
+    <div className="h-screen w-screen m-3 flex flex-col">
         {loading? (<div className='flex items-center justify-center min-h-screen'>
         <RingLoader color={'#4A90E2'} size={150}/>
        </div>): (
@@ -106,16 +116,18 @@ function handleCart() {
                                     <div className="hidden sm:ml-6 sm:block">
                                         <div className="flex space-x-4">
                                             {navigation.map((item) => (
-                                                <a
+                                                <button
                                                     key={item.name}
+                                                    onClick={item.onClick}
                                                     href={item.href}
-                                                    aria-current={item.current ? 'page' : undefined}
-                                                    className={
-                                                        item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white'
-                                                    }
+                                                    // aria-current={item.current ? 'page' : undefined}
+                                                    className={classNames(
+                                                        item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
+                                                        'px-3 py-2 rounded-md text-sm font-medium'
+                                                      )}
                                                 >
                                                     {item.name}
-                                                </a>
+                                                </button>
                                             ))}
                                         </div>
                                     </div>
@@ -194,7 +206,7 @@ function handleCart() {
                     {/*   Products */}
 
                    <ProductComponent/>
-                    <button onClick={handleLogout} className='bg-sky-500 hover:bg-red-700 text-white bottom-20 flex-col'>
+                    <button onClick={handleLogout} className='bg-sky-500 hover:bg-red-700 text-white bottom-20 flex-col py-1 px-2 text-sm rounded'>
                         Logout
                     </button>
                 </>
