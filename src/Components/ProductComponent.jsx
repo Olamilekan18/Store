@@ -2,8 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { RingLoader } from 'react-spinners';
 import { HeartIcon } from '@heroicons/react/24/outline';
 import { Button } from '@headlessui/react';
+import HeartList from './HeartList';
 
-const ProductComponent=() => {
+const ProductComponent=({product}) => {
 const [products, setProducts] = useState([])
 const [loading, setLoading] = useState(true);
 
@@ -24,10 +25,17 @@ useEffect(() => {
   fetchPrpduct();
 }
  , [])
+   
 
+  const [isToggled, setIsToggled]  = useState(false)
+ 
  function handleCart() {
-    console.log("Added to Cart")
- }
+  console.log("Added to Cart")
+}
+
+function handleHeartClick() {
+  setIsToggled(!isToggled)
+}
 
 return(
     <div>
@@ -43,9 +51,11 @@ return(
             <img src={product.image} alt={product.title} style={{ width: '100px', height: '100px' }} />
             <p>{product.description.substring(0, 100)}...</p>
             <p className="font-bold">Price: ${product.price}</p>
-            <HeartIcon className= "w-6 h-6 text-gray-500 hover:fill-red-500  cursor-pointer  bottom-2 right-2" />
-            <Button onClick={handleCart} className="rounded bg-sky-600 py-2 px-4 text-sm text-white data-[hover]:bg-sky-500 data-[hover]:data-[active]:bg-sky-700">Add to Cart</Button>
-
+            <HeartList productId={product.id} />
+            {/* <HeartIcon onClick={handleHeartClick} className= {`w-6 h-6 cursor-pointer bottom-2 right-2 ${isToggled ? 'fill-red-500' : 'text-gray-500'}`} /> */}
+            <Button onClick={handleCart}
+  className = "rounded py-2 px-4 text-sm text-white bg-sky-500"  >
+    Add To Cart</Button>
           </div>
         ))}
       </div>
