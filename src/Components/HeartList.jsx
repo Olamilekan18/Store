@@ -12,7 +12,7 @@ function HeartList({ productId }) {
     <HeartIcon
       onClick={handleHeartClick}
       className={`w-6 h-6 cursor-pointer ${
-        isToggled ? 'text-red-500' : 'text-gray-500'
+        isToggled ? 'fill-red-500' : 'text-gray-500'
       }`}
       id={productId} // Set the ID of the heart icon
     />
