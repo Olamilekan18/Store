@@ -31,7 +31,7 @@ function Login() {
       console.log("Login successful:", user);
      setTimeout(() => {
       navigate('/home');
-    }, 200); //delay
+    }, 0); //delay
   }
   catch(error){
     const errorCode = error.code; // Get the error code

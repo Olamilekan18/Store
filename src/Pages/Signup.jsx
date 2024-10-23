@@ -25,7 +25,7 @@ function SignUp() {
           setTimeout(() => {
              navigate('/home')
   
-          }, 100);        }
+          }, 0);        }
         catch(error){
             if (error.message === 'Firebase: Error (auth/email-already-in-use).'){
                 setError('This email has been already registered')
