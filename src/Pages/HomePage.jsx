@@ -9,7 +9,7 @@ import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import { RingLoader } from 'react-spinners';
 import ProductComponent from '../Components/ProductComponent';
 
-const navigate = useNavigate()
+// const navigate = useNavigate();
 
 const navigation = [
   { name: 'Home', href: '#', current: true, onClick: () => navigate('/home')},

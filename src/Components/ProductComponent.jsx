@@ -52,7 +52,6 @@ return(
             <p>{product.description.substring(0, 100)}...</p>
             <p className="font-bold">Price: ${product.price}</p>
             <HeartList productId={product.id} />
-            {/* <HeartIcon onClick={handleHeartClick} className= {`w-6 h-6 cursor-pointer bottom-2 right-2 ${isToggled ? 'fill-red-500' : 'text-gray-500'}`} /> */}
             <Button onClick={handleCart}
   className = "rounded py-2 px-4 text-sm text-white bg-sky-500"  >
     Add To Cart</Button>
