@@ -65,7 +65,7 @@ function SignUp() {
           <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
             <form action="#" method="POST" className="space-y-6">
               <div>
-                <label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-900">
+                <label htmlFor="email" className="block text-sm font-medium leading-6 text-indigo-600">
                   Email address
                 </label>
                 <div className="mt-2">
@@ -83,7 +83,7 @@ function SignUp() {
   
               <div>
                 <div className="flex items-center justify-between">
-                  <label htmlFor="password" className="block text-sm font-medium leading-6 text-gray-900">
+                  <label htmlFor="password" className="block text-sm font-medium leading-6 text-indigo-600">
                     Password
                   </label>
                   
@@ -108,7 +108,7 @@ function SignUp() {
 </svg>
 
                 </div>
-                <label htmlFor="password" className="block text-sm font-medium leading-6 text-gray-900">
+                <label htmlFor="password" className="block text-sm font-medium leading-6 text-indigo-600">
                     Name
                   </label>
                 <div className="mt-2">
@@ -138,7 +138,7 @@ function SignUp() {
                   </div>
             </form>
   
-            <p className="mt-10 text-center text-sm text-gray-500">
+            <p className="mt-10 text-center text-sm text-indigo-600">
               Have an account?{' '}
               <Link to = '/Login' className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">Login</Link>
             </p>
