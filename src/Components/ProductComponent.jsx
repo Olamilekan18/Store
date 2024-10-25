@@ -29,7 +29,6 @@ useEffect(() => {
  , [])
    
 
-  const [isToggled, setIsToggled]  = useState(false)
  const [addToCart, setAddToCart] = useState(false)
 
  function handleCart() {
@@ -37,15 +36,11 @@ useEffect(() => {
    if (!addToCart) {
       toast.success('Added to favorites!');
    }
-    // } else {
-    //   toast.error('Removed from favorites!');
-    // }
+   
   console.log("Added to Cart")
 }
 
-// function handleHeartClick() {
-//   setIsToggled(!isToggled)
-// }
+
 
 return(
     <div>
