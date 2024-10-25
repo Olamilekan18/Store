@@ -34,7 +34,7 @@ useEffect(() => {
 
  function handleCart() {
   // setAddToCart((prev) => !prev)
-   if (addToCart) {
+   if (!addToCart) {
       toast.success('Added to favorites!');
    }
     // } else {

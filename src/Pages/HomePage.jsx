@@ -12,22 +12,23 @@ import ProductComponent from '../Components/ProductComponent';
 // const navigate = useNavigate();
 
 const navigation = [
-  { name: 'Home', href: '#', current: true, onClick: () => navigate('/home')},
-  { name: 'Favorites', href: '#', current: false, onclick: handleFavorites},
-  { name: 'Cart', href: '#', current: false, onClick: handleCart  },
-  { name: 'Account', href: '#', current: false,  },
+  { name: 'Home', href: '#', current: true, onClick: 'home'},
+  { name: 'Favorites', href: '#', current: false, onclick:'favorites'},
+  { name: 'Cart', href: '#', current: false, onClick: 'cart' },
+  { name: 'Account', href: '#', current: false, onClick: 'account' },
 ]
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
-function handleFavorites() {
-    console.log("Added to Favorites")
-}
 
-function handleCart() {
-    console.log("Added to cart")
-  }
+// function handleFavorites() {
+//     console.log("Added to Favorites")
+// }
+
+// function handleCart() {
+//     console.log("Added to cart")
+//   }
 
 function Home() {
 
@@ -53,6 +54,25 @@ function Home() {
     await signOut(auth);
     navigate('/')
   };
+
+  const handleNavigation = (page) => {
+    switch (page) {
+      case 'home':
+        navigate('/home');
+        break;
+      case 'favorites':
+        navigate('/favorites'); // Update this to the correct route
+        break;
+      case 'cart':
+        navigate('/cart');
+        break;
+      case 'account':
+        navigate('/account');
+        break;
+      default:
+        break;
+    }
+}
 
 function handleCart() {
   console.log("Added to cart")
