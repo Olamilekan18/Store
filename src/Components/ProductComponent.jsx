@@ -3,6 +3,8 @@ import { RingLoader } from 'react-spinners';
 import { HeartIcon } from '@heroicons/react/24/outline';
 import { Button } from '@headlessui/react';
 import HeartList from './HeartList';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css'; // Import the CSS for react-toastify
 
 const ProductComponent=({product}) => {
 const [products, setProducts] = useState([])
@@ -28,14 +30,22 @@ useEffect(() => {
    
 
   const [isToggled, setIsToggled]  = useState(false)
- 
+ const [addToCart, setAddToCart] = useState(false)
+
  function handleCart() {
+  // setAddToCart((prev) => !prev)
+   if (addToCart) {
+      toast.success('Added to favorites!');
+   }
+    // } else {
+    //   toast.error('Removed from favorites!');
+    // }
   console.log("Added to Cart")
 }
 
-function handleHeartClick() {
-  setIsToggled(!isToggled)
-}
+// function handleHeartClick() {
+//   setIsToggled(!isToggled)
+// }
 
 return(
     <div>
@@ -60,6 +70,16 @@ return(
       </div>
        </div>
     )}
+    <ToastContainer 
+     closeOnClick
+     pauseOnHover
+     draggable
+    
+    limit={4}
+     autoClose={3000}
+     hideProgressBar={false}
+     closeButton = {true}
+    /> 
     </div>
 )
 

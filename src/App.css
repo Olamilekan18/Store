@@ -40,3 +40,15 @@
 .read-the-docs {
   color: #888;
 }
+#login-svg{
+  width: 1.5rem /* 24px */;
+    height: 1.5rem ;
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    right: 0px;
+    top: 0.5rem;
+    margin-left: 0.75rem;
+    align-items: center;
+    cursor: pointer;
+}
